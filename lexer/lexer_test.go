@@ -3,7 +3,7 @@ package lexer
 import (
 	"testing"
 
-	"../token"
+	"monkey/token"
 )
 
 func TestNextToken(t *testing.T) {
@@ -24,7 +24,7 @@ func TestNextToken(t *testing.T) {
 		{token.EOF, ""},
 	}
 
-	l := New(input)
+	l := New(input) // New is creating a new Lexer struct and imputing the above tests into the input
 
 	for i, tt := range tests {
 		tok := l.NextToken()
