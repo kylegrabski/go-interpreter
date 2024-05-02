@@ -77,7 +77,7 @@ func TestNextToken(t *testing.T) {
 		{token.EOF, ""},
 	}
 
-	l := New(input) // New is creating a new Lexer struct and inputing the above tests into the input
+	l := New(input) // New is creating a new Lexer struct passing in the input in the constructor
 
 	for i, tt := range tests {
 		tok := l.NextToken()
