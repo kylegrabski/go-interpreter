@@ -53,15 +53,31 @@ func TestNextToken(t *testing.T) {
 		{token.ASSIGN, "="},
 		{token.FUNCTION, "fn"},
 		{token.LPAREN, "("},
+		{token.IDENT, "x"},
 		{token.COMMA, ","},
 		{token.IDENT, "y"},
 		{token.RPAREN, ")"},
-		{token.LBRACE, "}"},
+		{token.LBRACE, "{"},
 		{token.IDENT, "x"},
-		// @TODO FINISH IMPLEMENTING TEST!
+		{token.PLUS, "+"},
+		{token.IDENT, "y"},
+		{token.SEMICOLON, ";"},
+		{token.RBRACE, "}"},
+		{token.SEMICOLON, ";"},
+		{token.LET, "let"},
+		{token.IDENT, "result"},
+		{token.ASSIGN, "="},
+		{token.IDENT, "add"},
+		{token.LPAREN, "("},
+		{token.IDENT, "five"},
+		{token.COMMA, ","},
+		{token.IDENT, "ten"},
+		{token.RPAREN, ")"},
+		{token.SEMICOLON, ";"},
+		{token.EOF, ""},
 	}
 
-	l := New(input) // New is creating a new Lexer struct and imputing the above tests into the input
+	l := New(input) // New is creating a new Lexer struct and inputing the above tests into the input
 
 	for i, tt := range tests {
 		tok := l.NextToken()
