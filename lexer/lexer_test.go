@@ -1,3 +1,5 @@
+// @TODO Move this to its own TESTS dir
+
 package lexer
 
 import (
