@@ -21,3 +21,6 @@
 go.work
 
 go.mod
+
+# IDE extenstions and debugger
+.vscode
