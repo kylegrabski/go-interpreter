@@ -4,6 +4,7 @@ import (
 	"monkey/ast"
 	"monkey/lexer"
 	"monkey/token"
+	"strings"
 	"testing"
 )
 
@@ -40,8 +41,9 @@ func TestLetStatements(t *testing.T) {
 	}
 }
 
+// @TODO Finish implementing tests
 func testLetStatement(t *testing.T, s ast.Statement, name string) bool {
-	if s.TokenLiteral() != token.LET {
+	if s.TokenLiteral() != strings.ToLower(token.LET) {
 		t.Errorf("s.TokenLiteral not %q. got=%q", token.LET, s.TokenLiteral())
 		return false
 	}
