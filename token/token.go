@@ -1,10 +1,7 @@
-// The lexer(tokenizer) gets the users input and transforms it into a token that will then be used in the parser
-
-// @TODO attach filenames and line numbers to the tokens to track down lexing and parsing errors (initialize lexer with io.Reader and the filename)
-
 package token
 
-type TokenType string // Defining this as a string allows us to use many different values as TokenTypes @TODO Look into making this an int or a byte for increased performance
+// @TODO Look into making this an int or a byte for increased performance
+type TokenType string
 
 type Token struct {
 	Type    TokenType
@@ -19,10 +16,10 @@ const (
 	EOF     = "EOF"
 
 	// Identifiers + literals
-	IDENT = "IDENT" //add, foobar, x, y, ...
+	IDENT = "IDENT"
 	INT   = "INT"
 
-	// Operators
+	// Operators (@TODO future opterators: INCREMENT = "++", DECREMENT = "--")
 	ASSIGN   = "="
 	PLUS     = "+"
 	MINUS    = "-"
