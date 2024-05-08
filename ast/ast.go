@@ -3,6 +3,8 @@ package ast
 
 import "monkey/token"
 
+/* ------------------------------ Interfaces ------------------------------ */
+
 type Node interface {
 	TokenLiteral() string
 }
@@ -17,6 +19,8 @@ type Expression interface {
 	expressionNode()
 }
 
+/* ------------------------------ Program ------------------------------ */
+
 type Program struct {
 	Statements []Statement
 }
@@ -28,6 +32,8 @@ func (p *Program) TokenLiteral() string {
 		return ""
 	}
 }
+
+/* ------------------------------ LetStatement ------------------------------ */
 
 type LetStatement struct {
 	Token token.Token
@@ -45,3 +51,13 @@ type Identifier struct {
 
 func (i *Identifier) expressionNode()      {}
 func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
+
+/* ------------------------------ ReturnStatement ------------------------------ */
+
+type ReturnStatement struct {
+	Token       token.Token
+	ReturnValue Expression
+}
+
+func (rs *ReturnStatement) statementNode()       {}
+func (rs *ReturnStatement) TokenLiteral() string { return rs.Token.Literal }
