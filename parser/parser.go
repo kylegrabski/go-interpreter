@@ -14,6 +14,9 @@ type Parser struct {
 
 	curToken  token.Token
 	peekToken token.Token
+
+	prefixParserFns map[token.TokenType]prefixParseFn
+	infixParseFns   map[token.TokenType]infixParseFn
 }
 
 func New(l *lexer.Lexer) *Parser {
@@ -91,6 +94,13 @@ func (p *Parser) parseReturnStatement() *ast.ReturnStatement {
 	return stmt
 }
 
+/* ------------------------------ Parse Expressions ------------------------------ */
+
+type (
+	prefixParseFn func() ast.Expression
+	infixParseFn  func(ast.Expression) ast.Expression
+)
+
 /* ------------------------------ Helper Functions ------------------------------ */
 
 func (p *Parser) curTokenIs(t token.TokenType) bool {
@@ -123,4 +133,12 @@ func (p *Parser) peekError(t token.TokenType) {
 
 func (p *Parser) peekTokenIs(t token.TokenType) bool {
 	return p.peekToken.Type == t
+}
+
+func (p *Parser) registerPrefix(tokenType token.TokenType, fn prefixParseFn) {
+	p.prefixParserFns[tokenType] = fn
+}
+
+func (p *Parser) registerInfix(tokenType token.TokenType, fn infixParseFn) {
+	p.infixParseFns[tokenType] = fn
 }
